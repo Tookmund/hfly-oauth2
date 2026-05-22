@@ -14,8 +14,9 @@ import (
 )
 
 type Configuration struct {
-	Paths []string
-	Host  string
+	Paths  []string
+	Host   string
+	Scheme string
 	clientcredentials.Config
 }
 
@@ -56,6 +57,7 @@ func main() {
 
 		// Switch requested host to configured host
 		req.URL.Host = conf.Host
+		req.URL.Scheme = conf.Scheme
 
 		req.Header.Add("Authentication", token.Type()+" "+token.AccessToken)
 
